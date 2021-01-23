@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="comp">
+    <h2>{{ title }}</h2>
     Teste {{ msg }}
     <test-component />
     <form-component />
+    <tasks-component />
   </div>
 </template>
 
@@ -10,21 +12,29 @@
 
 import TestComponent from './components/TestComponent'
 import FormComponent from './components/FormComponent'
+import TasksComponent from './components/TasksComponent'
 
 export default {
   data() {
     return {
-      msg: 'Alguma coisa'
+      msg: 'Alguma coisa',
+      title: 'App Component'
     }
   },
   components: {
     TestComponent,
-    FormComponent
+    FormComponent,
+    TasksComponent
   },
 }
 </script>
 
 <style>
+.comp {
+  border: 1px solid blue;
+  margin: 5px;
+  padding: 5px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
