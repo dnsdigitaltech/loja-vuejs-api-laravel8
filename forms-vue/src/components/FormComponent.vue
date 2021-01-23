@@ -27,7 +27,9 @@
             <input type="checkbox" name="" id="agree" v-model="terms">
             <hr>
             <textarea name="" id="" cols="30" rows="10" v-model="description"></textarea>
-            {{ description }}
+            <div>
+                <pre v-html="description"></pre>
+            </div>
             <hr>
             <button type="submit">Enviar agora</button>
         </form>
