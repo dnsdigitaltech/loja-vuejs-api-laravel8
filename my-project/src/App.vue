@@ -1,15 +1,25 @@
 <template>
   <div id="app">
     Teste {{ msg }}
+    <test-component />
+    <form-component />
   </div>
 </template>
 
 <script>
+
+import TestComponent from './components/TestComponent'
+import FormComponent from './components/FormComponent'
+
 export default {
   data() {
     return {
       msg: 'Alguma coisa'
     }
+  },
+  components: {
+    TestComponent,
+    FormComponent
   },
 }
 </script>
