@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>{{ Title }}</h2>
+        <h2>Tasks Component</h2>
     </div>
 </template>
 
