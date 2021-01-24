@@ -11,15 +11,22 @@
 
 <script>
 export default {
-    props: ['items', 'title'],
-    data() {
-        return {
-           // title: 'Lista de Tarefas'
+    props: {
+        title: {
+            required: true,
+            type: String,
+            default: ''
+        },
+        items: {
+            required: true,
+            type : Array,
+            default: [],
         }
-    },
+    }
+    
 }
 </script>
 
-<style  scoped>
-
+<style scoped>
+    
 </style>
