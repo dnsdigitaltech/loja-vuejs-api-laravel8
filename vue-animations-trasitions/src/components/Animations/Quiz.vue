@@ -18,6 +18,7 @@
                 mode: 'app-question'
             }
         },
+        
         methods: {
             changeMode() {
             alert('ujndsgbnsdg')
