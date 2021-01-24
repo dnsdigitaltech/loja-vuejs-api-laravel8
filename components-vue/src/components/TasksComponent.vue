@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>{{ title }}</h2>
+        <input type="text" v-model="task">
         <button @click="callParent">Chamar Pai</button>
         <ul>
             <li v-for="(item, index) in items" :key="index">
@@ -15,13 +16,13 @@ export default {
     props: ['items', 'title'],
     data() {
         return {
-           // title: 'Lista de Tarefas'
+           task: ''
         }
     },
     methods: {
         callParent() {
-            alert('Chama Pai')
-            this.$emit('calledParent')
+            this.$emit('calledParent', this.task)
+            this.task = ''
         }
     },
 }
