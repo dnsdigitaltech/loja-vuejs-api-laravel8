@@ -1,10 +1,14 @@
 <template>
-    <div class="default">
-        <h2 v-text="question"></h2>
-        <form @submit.prevent="checkResult">
-            <input type="text" name="" placeholder="Resposta" v-model="reply">
-            <button type="submit">Responder</button>
-        </form>
+    <div class="card">
+        <div class="card-header">
+            <h2 v-text="question"></h2>
+        </div>
+        <div class="card-body">
+            <form @submit.prevent="checkResult" class="form form-inline">
+                <input type="text" name="" class="form-control" placeholder="Resposta" v-model="reply">
+                <button class="btn btn-primary" type="submit">Responder</button>
+            </form>
+        </div>
     </div>
 </template>
 

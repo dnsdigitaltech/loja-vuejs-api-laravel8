@@ -1,8 +1,8 @@
 <template>
-    <div class="success">
+    <div class="alert alert-success text-center">
         <h1>{{ title }}</h1>
         <p>Sucesso na resposta!</p>
-        <button @click="nextQuestion">Próxima Pergunta</button>
+        <button @click="nextQuestion" class="btn btn-success">Próxima Pergunta</button>
     </div>
 </template>
 
