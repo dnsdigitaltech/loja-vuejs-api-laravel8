@@ -37,6 +37,8 @@
                     alert('Acertou')
                 else
                     alert('errou')
+
+                this.$emit('changeMode')
             }
         },
     }
