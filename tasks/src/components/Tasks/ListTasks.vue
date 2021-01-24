@@ -2,7 +2,7 @@
     <div>
         <h2>{{ title }}</h2>
 
-        <form class="form form-inline" @submit.prevent="save">
+        <form class="form form-inline" @submit.prevent="onSubmit">
             <input type="text" name="" placeholder="Nova Tarefa" class="form-control" v-model="task.name">
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
@@ -20,7 +20,7 @@
                     <td>{{ task.id }}</td>
                     <td>{{ task.name }}</td>
                     <td>
-                        <a href="" class="btn btn-info">Editar</a>
+                        <a href="#" @click.prevent="edit(index)" class="btn btn-info">Editar</a>
                         <a href="" class="btn btn-danger">Deletar</a>
                     </td>
                 </tr>
@@ -38,13 +38,34 @@ export default {
             task: {
                 id: '',
                 name: ''
-            }
+            },
+            updating: false,
+            updatedIndex: ''
         }
     },
     methods: {
+        onSubmit() {
+            if(this.updating){
+                return this.update()
+            }
+            return this.save()
+        },
         save() {
             this.task.id = this.tasks.length + 1
             this.tasks.push(this.task),
+            this.clearForm()
+        },
+        edit(index) {
+            this.task = this.tasks[index]
+            this.updatedIndex = index
+            this.updating = true
+        },
+        update(){
+            this.tasks[this.updatedIndex] = this.task
+            this.updating = false
+            this.clearForm()
+        },
+        clearForm() {
             this.task = {
                 id: '',
                 name: ''
