@@ -11,6 +11,8 @@
 
 <script>
     import Question from './Question'
+    import AnswerSuccess from './AnswerSuccess'
+    import AnswerError from './AnswerError'
     export default {
         data() {
             return {
@@ -18,18 +20,23 @@
                 mode: 'app-question'
             }
         },
-        
+
         methods: {
-            changeMode() {
-            alert('ujndsgbnsdg')
+            changeMode(mode) {
+                if(mode == undefined)
+                    this.mode = 'app-question'
+                else
+                    this.mode = mode
             }
         },
         components:{
-            'app-question': Question
+            'app-question': Question,
+            AnswerSuccess,
+            AnswerError
         }
     }
 </script>
 
 <style scoped>
-
+    
 </style>
