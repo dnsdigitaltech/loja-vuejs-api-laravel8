@@ -5,6 +5,12 @@
             <input type="text" name="" placeholder="Informe o CEP" v-model="cep">
             <button type="submit">Buscar CEP</button>
         </form>
+        <div v-show="address.bairro != ''">
+            <p><b>Bairro: </b>{{ address.bairro }}</p>
+            <p><b>Cidade: </b>{{ address.localidade }}</p>
+            <p><b>Logradouro: </b>{{ address.logradouro }}</p>
+            <p><b>Cep: </b>{{ address.cep }}</p>
+        </div>
     </div>
 </template>
 
@@ -13,14 +19,17 @@ export default {
     data() {
         return {
             title: 'Busca CEP com Vue JS',
-            cep: ''
+            cep: '',
+            address: {
+                bairro: ''
+            }
         }
     },
     methods: {
         onSubmit(){
             this.$http.get('https://viacep.com.br/ws/'+ this.cep +'/json/')
                         .then(response => {
-                            console.log(response.body)
+                            this.address = response.body
                         }, error => console.log(error))
         }
     },
