@@ -4,6 +4,6 @@ import TasksComponent from './components/TasksComponent'
 
 export default [
     {path: '/', component: HomeComponent},
-    {path: '/produtos', component: ProductsComponent},
+    {path: '/produtossdfgsdf ', component: ProductsComponent, name: 'products'},
     {path: '/tarefas', component: TasksComponent},
 ]
