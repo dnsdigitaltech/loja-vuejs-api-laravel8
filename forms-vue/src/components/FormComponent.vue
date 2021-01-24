@@ -1,24 +1,20 @@
 <template>
     <div>
         
-        <form action="">
-
-
-
-
-
-            <input type="text" name="" placeholder="Nome" v-model="userData.name">
-            {{ userData.name }}
-            <hr>
+        <form @submit.prevent="saveData">
+            <div :class="errors.has('name') ? 'is-danger' : 'is-success'">
+                <input type="text" name="name" v-validate="'required|min:3|max:100'" placeholder="Nome" v-model="userData.name">
+                <p v-if="errors.has('name')">
+                    {{ errors.first('name') }}
+                </p>
+            </div>
+            
             <div :class="errors.has('email') ? 'is-danger' : 'is-success'">
                 <input type="email" v-validate="'required|email'" name="email" placeholder="E-mail" v-model="userData.email">
                 <p v-if="errors.has('email')">
                     {{ errors.first('email') }}
                 </p>
             </div>
-            
-            
-
             <hr>
             <input type="number" name="" placeholder="Idade" v-model="userData.age">
             {{ userData.age }}
@@ -45,7 +41,9 @@
             <hr>
             <button type="submit">Enviar agora</button>
         </form>
-
+        <div v-show="isSubmited">
+            {{ userData }}
+        </div>
     </div>
 </template>
 
@@ -61,7 +59,19 @@ export default {
                 state: ''
             },
             terms: true,
-            description: ''
+            description: '',
+            isSubmited: false
+        }
+    },
+    methods: {
+        saveData() {
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                    this.isSubmited = 'true'
+                    alert('Formulário enviado')
+                    return
+                }
+            })
         }
     },
 }
