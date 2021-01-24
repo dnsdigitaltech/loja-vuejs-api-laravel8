@@ -1,6 +1,12 @@
 <template>
     <div>
         <h2>{{ title }}</h2>
+
+        <form class="form form-inline" @submit.prevent="save">
+            <input type="text" name="" placeholder="Nova Tarefa" class="form-control" v-model="task.name">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -28,18 +34,28 @@ export default {
     data() {
         return {
             title: 'Lista de Tarefas',
-            tasks: [
-                {id: 12, name: 'Teste'},
-                {id: 13, name: 'Teste 2'},
-                {id: 14, name: 'Teste 3'},
-                {id: 15, name: 'Teste 4'},
-                {id: 16, name: 'Teste 5'},
-            ]
+            tasks: [],
+            task: {
+                id: '',
+                name: ''
+            }
+        }
+    },
+    methods: {
+        save() {
+            this.task.id = this.tasks.length + 1
+            this.tasks.push(this.task),
+            this.task = {
+                id: '',
+                name: ''
+            }
         }
     },
 }
 </script>
 
 <style scoped>
-
+    form {
+        margin: 20px 0;
+    }
 </style>
