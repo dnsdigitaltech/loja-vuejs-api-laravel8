@@ -2,10 +2,19 @@
     <div>
         <h2>{{ title }}</h2>
 
-        <form class="form form-inline" @submit.prevent="onSubmit">
-            <input type="text" name="" placeholder="Nova Tarefa" class="form-control" v-model="task.name">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+        <div class="row">
+            <div class="col-6">
+                <form class="form form-inline">
+                    <input type="text" name="" placeholder="Encontrar?" class="form-control" v-model="filter">
+                </form>
+            </div>
+            <div class="col-6">
+                <form class="form form-inline" @submit.prevent="onSubmit">
+                    <input type="text" name="" placeholder="Nova Tarefa" class="form-control" v-model="task.name">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
 
         <table class="table table-dark">
             <thead>
@@ -16,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(task, index) in tasks" :key="index">
+                <tr v-for="(task, index) in filteredItems" :key="index">
                     <td>{{ task.id }}</td>
                     <td>{{ task.name }}</td>
                     <td>
@@ -40,7 +49,8 @@ export default {
                 name: ''
             },
             updating: false,
-            updatedIndex: ''
+            updatedIndex: '',
+            filter: ''
         }
     },
     methods: {
@@ -75,6 +85,25 @@ export default {
             this.tasks.splice(index,1)
         }
     },
+    computed: {
+        filteredItems() {
+            if(this.filter === ''){
+                return this.tasks
+            }
+            /*let vm = this
+            return this.tasks.filter( task => {
+                return task.name.indexOf(vm.filter) > -1
+            })*/
+            /*let vm = this
+            return this.tasks.filter( task => {
+                return task.name.toLowerCase().indexOf(vm.filter.toLowerCase()) > -1
+            })*/
+            let vm = this
+            return this.tasks.filter( task => {
+                return task['name'].includes(vm.filter)
+            })
+        }
+    }
 }
 </script>
 
