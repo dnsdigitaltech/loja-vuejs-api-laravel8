@@ -2,11 +2,23 @@
     <div>
         
         <form action="">
+
+
+
+
+
             <input type="text" name="" placeholder="Nome" v-model="userData.name">
             {{ userData.name }}
             <hr>
-            <input type="email" name="" placeholder="E-mail" v-model="userData.email">
-            {{ userData.email }}
+            <div :class="errors.has('email') ? 'is-danger' : 'is-success'">
+                <input type="email" v-validate="'required|email'" name="email" placeholder="E-mail" v-model="userData.email">
+                <p v-if="errors.has('email')">
+                    {{ errors.first('email') }}
+                </p>
+            </div>
+            
+            
+
             <hr>
             <input type="number" name="" placeholder="Idade" v-model="userData.age">
             {{ userData.age }}
@@ -56,5 +68,13 @@ export default {
 </script>
 
 <style scoped>
-
+    .is-danger {
+        border: 1px solid rgb(179,11,11);
+    }
+    .is-danger p {
+        color: rgb(179,11,11);;
+    }
+    .is-success {
+        border: 1px solid green;
+    }
 </style>
