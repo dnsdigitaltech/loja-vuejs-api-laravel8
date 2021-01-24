@@ -22,6 +22,9 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="preloader">
+            <img src="../../assets/preloader.gif" alt="" class="preloader">
+        </div>
     </div>
 </template>
 
@@ -30,7 +33,8 @@ export default {
     data() {
         return {
             title: 'Lista de Produtos',
-            products: {}
+            products: {},
+            preloader: false
         }
     },
     created() {
@@ -38,17 +42,21 @@ export default {
     },
     methods: {
         getProducts(){
+            this.preloader = true
             this.$http.get('http://localhost:8000/api/v1/products/')
             .then(response => {
                 this.products = response.body
             },error => {
                 console.log(error)
             })
+            .finally(() => this.preloader = false)
         }
     },
 }
 </script>
 
-<style scoped>
-
+<style>
+    .preloader{
+        max-width: 60px;
+    }
 </style>
