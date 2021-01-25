@@ -27,7 +27,9 @@
               :to="{ name: 'product.edit', params: { id: product.id } }"
               >Editar</router-link
             >
-            <a href="#" class="btn btn-danger">Deletar</a>
+            <a href="#" @click.prevent="deleteProduct(product.id)" class="btn btn-danger"
+              >Deletar</a
+            >
           </td>
         </tr>
       </tbody>
@@ -76,9 +78,19 @@ export default {
         )
         .finally(() => (this.preloader = false));
     },
-    pagination(pageNumber) {
-      this.products.current_page = pageNumber;
-      this.getProducts();
+    deleteProduct(id) {
+      this.preloader = true;
+      this.$http
+        .delete(`http://localhost:8000/api/v1/products/${id}`)
+        .then(
+          (response) => {
+            this.getProducts();
+          },
+          (error) => {
+            console.log(error);
+          }
+        )
+        .finally(() => (this.preloader = false));
     },
   },
   components: {
