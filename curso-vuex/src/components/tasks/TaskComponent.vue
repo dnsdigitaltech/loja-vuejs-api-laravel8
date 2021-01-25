@@ -4,7 +4,7 @@
     <task-add-component></task-add-component>
     <ul>
       <li
-        v-for="(task, index) in getTasks"
+        v-for="(task, index) in getTasksSorted"
         :key="index"
         :class="{ 'completed': task.completed }"
       >
@@ -27,6 +27,9 @@ export default {
     getTasks() {
       return this.$store.state.tasks;
     },
+    getTasksSorted() {
+      return this.$store.getters.sortedTasks
+    }
   },
   methods: {
     completedTask(task) {
