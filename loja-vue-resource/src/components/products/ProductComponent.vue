@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>{{ title }}</h2>
+        <router-link to="/produtos/criar" class="btn btn-info btn-create">Cadatrar Produto</router-link>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -90,5 +91,8 @@ export default {
 <style>
     .preloader{
         max-width: 60px;
+    }
+    .btn-create {
+        margin: 10px 0;
     }
 </style>

@@ -1,7 +1,9 @@
 import HomeComponent from '../components/home/HomeComponent'
-import ProductsComponent from '../components/products/ProductsComponent'
+import ProductComponent from '../components/products/ProductComponent'
+import ProductCreateComponent from '../components/products/ProductCreateComponent'
 
 export default [
     {path: '/', component: HomeComponent},
-    {path: '/Produtos', component: ProductsComponent}
+    {path: '/produtos', component: ProductComponent},
+    {path: '/produtos/criar', component: ProductCreateComponent}
 ]
