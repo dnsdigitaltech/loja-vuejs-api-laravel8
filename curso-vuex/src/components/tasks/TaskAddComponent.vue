@@ -20,7 +20,8 @@ export default {
   methods: {
     onSubmit() {
       //this.$store.state.tasks.push(this.tasks)
-      this.$store.commit("ADD_TASK", this.task);
+      //this.$store.commit("ADD_TASK", this.task);
+      this.$store.dispatch("addTask", this.task);
       this.task = {
         name: "",
         completed: false,

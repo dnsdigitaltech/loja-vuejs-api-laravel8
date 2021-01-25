@@ -19,5 +19,11 @@ export default new Vuex.Store({
         TOOGLE_TASK(state, task) {
             task.completed = !task.completed
         }
+    },
+    actions: {
+        addTask(context, task) {
+            // ...ajax
+            context.commit('ADD_TASK', task)
+        }
     }
 })
