@@ -22,7 +22,11 @@
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
           <td>
-            <a href="#" class="btn btn-info">Editar</a>
+            <router-link
+              class="btn btn-info"
+              :to="{ name: 'product.edit', params: { id: product.id } }"
+              >Editar</router-link
+            >
             <a href="#" class="btn btn-danger">Deletar</a>
           </td>
         </tr>
