@@ -22,6 +22,14 @@
                 </tr>
             </tbody>
         </table>
+        <ul class="pagination">
+            <li v-if="products.current_page - 1 >= 1" class="page-item">
+                <a href="" class="page-link" @click.prevent="pagination(products.current_page - 1)"> Voltar </a>
+            </li>
+            <li v-if="products.current_page + 1 <= products.last_page" class="page-item">
+                <a href="" class="page-link" @click.prevent="pagination(products.current_page + 1)">Próxima Página</a>
+            </li>
+        </ul>
         <div v-if="preloader">
             <img src="../../assets/preloader.gif" alt="" class="preloader">
         </div>
@@ -33,7 +41,10 @@ export default {
     data() {
         return {
             title: 'Lista de Produtos',
-            products: {},
+            products: {
+                current_page: 1,
+                last_page: 1
+            },
             preloader: false
         }
     },
@@ -43,13 +54,18 @@ export default {
     methods: {
         getProducts(){
             this.preloader = true
-            this.$http.get('http://localhost:8000/api/v1/products/')
+            this.$http.get(`http://localhost:8000/api/v1/products?page=${this.products.current_page}`)
             .then(response => {
+                console.log(response.body)
                 this.products = response.body
             },error => {
                 console.log(error)
             })
             .finally(() => this.preloader = false)
+        },
+        pagination(pageNumber){
+            this.products.current_page = pageNumber
+            this.getProducts()
         }
     },
 }
