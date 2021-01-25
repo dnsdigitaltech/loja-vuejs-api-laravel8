@@ -1,9 +1,17 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <router-link to="/produtos/criar" class="btn btn-info btn-create"
-      >Cadatrar Produto</router-link
-    >
+    <div class="row">
+      <div class="col">
+        <router-link to="/produtos/criar" class="btn btn-info btn-create"
+          >Cadatrar Produto</router-link
+        >
+      </div>
+      <div class="col">
+        <product-search-component @search="searchProduct"></product-search-component>
+      </div>
+    </div>
+
     <div class="alert alert-danger" v-if="confirmDelete">
       <h2>Deseja Realmente deletar?</h2>
       <hr />
@@ -12,6 +20,7 @@
     <p>
       Total: <span>{{ products.total }}</span>
     </p>
+
     <table class="table table-dark">
       <thead>
         <tr>
@@ -51,6 +60,7 @@
 <script>
 import PaginationComponent from "../general/PaginationComponent";
 import PreloaderComponent from "../general/PreloaderComponent";
+import ProductSearchComponent from "./ProductSearchComponent";
 export default {
   data() {
     return {
@@ -67,6 +77,7 @@ export default {
       preloader: false,
       confirmDelete: false,
       idProductDelete: 0,
+      filter: "",
     };
   },
   created() {
@@ -76,7 +87,9 @@ export default {
     getProducts() {
       this.preloader = true;
       this.$http
-        .get(`http://localhost:8000/api/v1/products?page=${this.products.current_page}`)
+        .get(
+          `http://localhost:8000/api/v1/products?page=${this.products.current_page}&filter=${this.filter}`
+        )
         .then(
           (response) => {
             console.log(response.body);
@@ -107,10 +120,15 @@ export default {
         )
         .finally(() => (this.preloader = false));
     },
+    searchProduct(filter) {
+      this.filter = filter;
+      this.getProducts();
+    },
   },
   components: {
     PaginationComponent,
     PreloaderComponent,
+    ProductSearchComponent,
   },
 };
 </script>
