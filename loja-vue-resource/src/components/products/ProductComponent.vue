@@ -2,6 +2,7 @@
     <div>
         <h2>{{ title }}</h2>
         <router-link to="/produtos/criar" class="btn btn-info btn-create">Cadatrar Produto</router-link>
+        <p>Total: <span>{{ products.total }}</span></p>
         <table class="table table-dark">
             <thead>
                 <tr>
