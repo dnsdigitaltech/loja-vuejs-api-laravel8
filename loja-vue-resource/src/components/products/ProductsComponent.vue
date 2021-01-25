@@ -22,6 +22,12 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-component
+            :pagination="products"
+            :offset="offset"
+            @paginate="getProducts">
+            </pagination-component>
+        <!--
         <ul class="pagination">
             <li v-if="products.current_page - 1 >= 1" class="page-item">
                 <a href="" class="page-link" @click.prevent="pagination(products.current_page - 1)"> Voltar </a>
@@ -30,6 +36,7 @@
                 <a href="" class="page-link" @click.prevent="pagination(products.current_page + 1)">Próxima Página</a>
             </li>
         </ul>
+        -->
         <div v-if="preloader">
             <img src="../../assets/preloader.gif" alt="" class="preloader">
         </div>
@@ -37,14 +44,20 @@
 </template>
 
 <script>
+import PaginationComponent from '../general/PaginationComponent'
 export default {
     data() {
         return {
             title: 'Lista de Produtos',
             products: {
                 current_page: 1,
-                last_page: 1
+                last_page: 1,
+                total: 0,
+                per_page: 10,
+                from: 0,
+                to: 0
             },
+            offset:4,
             preloader: false
         }
     },
@@ -68,6 +81,9 @@ export default {
             this.getProducts()
         }
     },
+    components: {
+        PaginationComponent
+    }
 }
 </script>
 
