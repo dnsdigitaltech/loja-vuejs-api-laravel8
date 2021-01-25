@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <form @submit.prevent="createProduct">
+    <form @submit.prevent="updateProduct">
       <div class="form-group" :class="{ 'has-warning': errorsValidation.name }">
         <input
           type="text"
@@ -105,10 +105,10 @@ export default {
         )
         .finally(() => (this.preloader = false));
     },
-    createProduct() {
+    updateProduct() {
       this.preloader = true;
       this.$http
-        .post("http://localhost:8000/api/v1/products", this.product)
+        .put(`http://localhost:8000/api/v1/products/${this.id}`, this.product)
         .then(
           (response) => {
             this.$router.push("/produtos");
