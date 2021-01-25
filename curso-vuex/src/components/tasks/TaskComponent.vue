@@ -1,6 +1,11 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
+    <ul>
+      <li v-for="(task, index) in getTasks" :key="index">
+        {{ task.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -10,6 +15,11 @@ export default {
     return {
       title: "Lista de Tarefas",
     };
+  },
+  computed: {
+    getTasks() {
+      return this.$store.state.tasks;
+    },
   },
 };
 </script>
