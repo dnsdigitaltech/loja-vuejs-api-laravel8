@@ -4,6 +4,11 @@
     <router-link to="/produtos/criar" class="btn btn-info btn-create"
       >Cadatrar Produto</router-link
     >
+    <div class="alert alert-danger" v-if="confirmDelete">
+      <h2>Deseja Realmente deletar?</h2>
+      <hr />
+      <button class="btn btn-danger" @click.prevent="deleteProduct">Deletar Agora</button>
+    </div>
     <p>
       Total: <span>{{ products.total }}</span>
     </p>
@@ -27,7 +32,10 @@
               :to="{ name: 'product.edit', params: { id: product.id } }"
               >Editar</router-link
             >
-            <a href="#" @click.prevent="deleteProduct(product.id)" class="btn btn-danger"
+            <a
+              href="#"
+              @click.prevent="comfirmDeleteProduct(product.id)"
+              class="btn btn-danger"
               >Deletar</a
             >
           </td>
@@ -57,6 +65,8 @@ export default {
       },
       offset: 4,
       preloader: false,
+      confirmDelete: false,
+      idProductDelete: 0,
     };
   },
   created() {
@@ -78,12 +88,17 @@ export default {
         )
         .finally(() => (this.preloader = false));
     },
-    deleteProduct(id) {
+    comfirmDeleteProduct(id) {
+      this.confirmDelete = true;
+      this.idProductDelete = id;
+    },
+    deleteProduct() {
       this.preloader = true;
       this.$http
-        .delete(`http://localhost:8000/api/v1/products/${id}`)
+        .delete(`http://localhost:8000/api/v1/products/${this.idProductDelete}`)
         .then(
           (response) => {
+            this.confirmDelete = false;
             this.getProducts();
           },
           (error) => {
