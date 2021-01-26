@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
+    <h1>{{ title }}</h1>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      title: "Primeiro component em Vue Js",
+      title: "admin",
     };
   },
 };
