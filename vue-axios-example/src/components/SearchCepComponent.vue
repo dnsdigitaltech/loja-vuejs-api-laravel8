@@ -36,6 +36,7 @@ export default {
   methods: {
     onSubmit() {
       this.preloader = true;
+      this.reset();
       let x = axios
         .get(`https://viacep.com.br/ws/${this.cep}/json/`)
         .then((response) => {
@@ -51,6 +52,10 @@ export default {
           this.error = "404";
         })
         .finally(() => (this.preloader = false));
+    },
+    reset() {
+      this.error = "";
+      this.address = {};
     },
   },
 };
