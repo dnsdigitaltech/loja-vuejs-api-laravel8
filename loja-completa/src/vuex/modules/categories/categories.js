@@ -12,6 +12,7 @@ export default {
     },
     actions:{
         loadCategories (context) {
+          context.commit('PRELOADER', true)
           axios.get("http://127.0.0.1:8000/api/v1/categories")
           .then((response) => {
             console.log(response);
@@ -20,7 +21,7 @@ export default {
           .catch((errors) => {
             console.log(errors);
           })
-          .finally();
+          .finally(() => context.commit('PRELOADER', false));
         }
     },
     getters: {
