@@ -21,31 +21,21 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
       title: "Listagem de Categorias",
-      categories: { data: [] },
     };
   },
   created() {
-    this.loadCategories();
+    this.$store.dispatch("loadCategories");
   },
-  methods: {
-    loadCategories() {
-      axios
-        .get("http://127.0.0.1:8000/api/v1/categories")
-        .then((response) => {
-          console.log(response);
-          this.categories = response.data;
-        })
-        .catch((errors) => {
-          console.log(errors);
-        })
-        .finally();
+  computed: {
+    categories() {
+      return this.$store.state.categories.items.data;
     },
   },
+  methods: {},
 };
 </script>
 
