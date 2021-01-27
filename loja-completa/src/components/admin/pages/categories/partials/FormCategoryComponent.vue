@@ -25,6 +25,7 @@ export default {
       type: Object | Array,
       default: () => {
         return {
+          id: "",
           name: "",
         };
       },
