@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AdminComponent from '../components/admin/AdminComponent'
+//categories
 import CategoriesComponent from '../components/admin/pages/categories/CategoriesComponent'
 import AddCategoryComponent from '../components/admin/pages/categories/AddCategoryComponent'
 import EditCategoryComponent from '../components/admin/pages/categories/EditCategoryComponent'
 import DashboardComponent from '../components/admin/pages/dashboard/DashboardComponent'
+//products
+import ProductsComponent from '../components/admin/pages/products/ProductsComponent'
 
 Vue.use(VueRouter)
 const routes = [
@@ -15,7 +18,9 @@ const routes = [
             {path: '', component: DashboardComponent, name: 'admin.dashboard'},
             {path: 'categorias', component: CategoriesComponent, name: 'admin.categories'},
             {path: 'categorias/criar', component: AddCategoryComponent, name: 'admin.categories.create'},  
-            {path: 'categorias/:id/editar', component: EditCategoryComponent, name: 'admin.categories.edit', props:true}           
+            {path: 'categorias/:id/editar', component: EditCategoryComponent, name: 'admin.categories.edit', props:true},       
+            
+            {path: 'produtos', component: ProductsComponent, name: 'admin.products'}
         ]
     },
     

@@ -11,6 +11,11 @@
           >Categorias ({{ totalCategories }})</router-link
         >
       </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'admin.products' }" class="nav-link"
+          >Produtos</router-link
+        >
+      </li>
     </ul>
     <div class="container">
       <router-view></router-view>

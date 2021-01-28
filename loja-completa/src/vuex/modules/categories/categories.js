@@ -1,4 +1,6 @@
 import axios from "axios";
+import { URL_BASE } from '../../../config/config'
+const RESOURCE = 'categories/'
 export default {
     state:{
       items: {
@@ -13,7 +15,7 @@ export default {
     actions:{
         loadCategories (context, params) {
           context.commit('PRELOADER', true)
-          axios.get("http://127.0.0.1:8000/api/v1/categories", {params})
+          axios.get(`${URL_BASE}${RESOURCE}`, {params})
           .then((response) => {
             console.log(response);
             context.commit('LOAD_CATEGORIES', response)
@@ -26,7 +28,7 @@ export default {
         loadCategory (context, id) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.get(`http://127.0.0.1:8000/api/v1/categories/${id}`)
+            axios.get(`${URL_BASE}${RESOURCE}${id}`)
             .then(response => resolve(response.data))
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -35,7 +37,7 @@ export default {
         storeCategory (context, params){
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.post("http://127.0.0.1:8000/api/v1/categories", params)
+            axios.post(`${URL_BASE}${RESOURCE}`, params)
             .then(response => resolve())
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -45,7 +47,7 @@ export default {
         updateCategory (context, params) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.put(`http://127.0.0.1:8000/api/v1/categories/${params.id}`, params)
+            axios.put(`${URL_BASE}${RESOURCE}${params.id}`, params)
             .then(response => resolve())
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -54,7 +56,7 @@ export default {
         destroyCategory (context, id) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.delete(`http://127.0.0.1:8000/api/v1/categories/${id}`)
+            axios.delete(`${URL_BASE}${RESOURCE}${id}`)
             .then(response => resolve())
             .catch(error => reject(error))
             })
