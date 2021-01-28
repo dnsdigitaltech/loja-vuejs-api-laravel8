@@ -1,7 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="onSubmit">
-      <div class="form-group">
+      <div :class="['form-group', { 'has-error': errors.name }]">
+        <div v-if="errors.name">{{ errors.name[0] }}</div>
         <input
           type="text"
           name=""
@@ -36,16 +37,30 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      errors: {},
+    };
+  },
   methods: {
     onSubmit() {
       const action = this.updating ? "updateCategory" : "storeCategory";
       this.$store
         .dispatch(action, this.category)
         .then(() => this.$router.push({ name: "admin.categories" }))
-        .catch();
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.has-error {
+  color: rgb(221, 54, 3);
+}
+.has-error input {
+  border: 1px solid rgb(221, 54, 3);
+}
+</style>
