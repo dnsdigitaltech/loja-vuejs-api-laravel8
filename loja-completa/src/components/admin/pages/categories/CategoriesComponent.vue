@@ -10,7 +10,7 @@
         <tr>
           <th>ID</th>
           <th>NOME</th>
-          <th width="100">AÇÕES</th>
+          <th width="200">AÇÕES</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +22,9 @@
               :to="{ name: 'admin.categories.edit', params: { id: category.id } }"
               class="btn btn-info"
               >Editar</router-link
+            >
+            <a href="#" class="btn btn-danger" @click.prevent="destroy(category)"
+              >Remover</a
             >
           </td>
         </tr>
@@ -38,14 +41,29 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("loadCategories");
+    this.loadCategories();
   },
   computed: {
     categories() {
       return this.$store.state.categories.items.data;
     },
   },
-  methods: {},
+  methods: {
+    loadCategories() {
+      this.$store.dispatch("loadCategories");
+    },
+    destroy(category) {
+      this.$store
+        .dispatch("destroyCategory", category.id)
+        .then(() => {
+          this.$snotify.success(`Sucesso ao deletar a categoria: ${category.name}!`);
+          this.loadCategories();
+        })
+        .catch((error) => {
+          this.$snotify.error("Erro ao deletar a categoria!", "Falha");
+        });
+    },
+  },
 };
 </script>
 
