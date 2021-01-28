@@ -57,7 +57,6 @@ export default {
             axios.delete(`http://127.0.0.1:8000/api/v1/categories/${id}`)
             .then(response => resolve())
             .catch(error => reject(error))
-            //.finally(() => context.commit('PRELOADER', false))
             })
         }
     },
