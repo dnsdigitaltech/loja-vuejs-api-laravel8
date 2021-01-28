@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL_BASE } from '../../../config/config'
-const RESOURCE = 'products/'
+const RESOURCE = 'products'
 export default {
     loadProducts (context) {
         context.commit('PRELOADER', true)
