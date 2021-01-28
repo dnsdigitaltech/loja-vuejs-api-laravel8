@@ -11,9 +11,9 @@ export default {
       }
     },
     actions:{
-        loadCategories (context) {
+        loadCategories (context, params) {
           context.commit('PRELOADER', true)
-          axios.get("http://127.0.0.1:8000/api/v1/categories")
+          axios.get("http://127.0.0.1:8000/api/v1/categories", {params})
           .then((response) => {
             console.log(response);
             context.commit('LOAD_CATEGORIES', response)

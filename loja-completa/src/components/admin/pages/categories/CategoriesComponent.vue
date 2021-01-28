@@ -1,9 +1,16 @@
 <template>
   <div>
     <h1 v-text="title"></h1>
-    <router-link :to="{ name: 'admin.categories.create' }" class="btn btn-success"
-      >Cadastrar</router-link
-    >
+    <div class="row">
+      <div class="col">
+        <router-link :to="{ name: 'admin.categories.create' }" class="btn btn-success"
+          >Cadastrar</router-link
+        >
+      </div>
+      <div class="col">
+        <search @searchCategory="search"></search>
+      </div>
+    </div>
 
     <table class="table table-dark">
       <thead>
@@ -34,10 +41,12 @@
 </template>
 
 <script>
+import SearchCategoryComponent from "./partials/SearchCategoryComponent";
 export default {
   data() {
     return {
       title: "Listagem de Categorias",
+      name: "",
     };
   },
   created() {
@@ -50,7 +59,7 @@ export default {
   },
   methods: {
     loadCategories() {
-      this.$store.dispatch("loadCategories");
+      this.$store.dispatch("loadCategories", { name: this.name });
     },
     confirmDestroy(category) {
       this.$snotify.error(
@@ -59,7 +68,6 @@ export default {
         {
           timout: 10000,
           showProgressBar: true,
-          closeOnClick: true,
           buttons: [
             { text: "Não", action: () => console.log("Não deletou...") },
             { text: "Sim", action: () => this.destroy(category) },
@@ -78,6 +86,13 @@ export default {
           this.$snotify.error("Erro ao deletar a categoria!", "Falha");
         });
     },
+    search(filter) {
+      this.name = filter;
+      this.loadCategories();
+    },
+  },
+  components: {
+    search: SearchCategoryComponent,
   },
 };
 </script>
