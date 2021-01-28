@@ -8,17 +8,19 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-snotify/styles/material.css'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 const options = {
   toast: {
-    position: SnotifyPosition.rightTop
+    position: SnotifyPosition.rightTop,
+    showProgressBar:false
   }
 }
 
-Vue.use(Snotify, options, {toast: {showProgressBar:false}})
+Vue.use(Snotify, options)
 
 new Vue({
   el: '#app',

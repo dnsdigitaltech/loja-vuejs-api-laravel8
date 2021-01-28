@@ -14,18 +14,24 @@ export default {
     },
   },
   created() {
-    this.$store
-      .dispatch("loadCategory", this.id)
-      .then((response) => (this.category = response))
-      .catch((error) => {
-        console.log(error);
-      });
+    this.loadCagetory();
   },
   data() {
     return {
       title: "Editar Categoria",
       category: {},
     };
+  },
+  methods: {
+    loadCagetory() {
+      this.$store
+        .dispatch("loadCategory", this.id)
+        .then((response) => (this.category = response))
+        .catch((error) => {
+          this.$snotify.error("Categoria não encontrada", "404");
+          this.$router.push({ name: "admin.categories" });
+        });
+    },
   },
   components: {
     formCat: FormCategoryComponent,
