@@ -35,7 +35,7 @@
           <td>
             <div v-if="product.image">
               <img
-                :src="[`http://localhost:8000/storage/products/${product.image}`]"
+                :src="[`${url_img}products/${product.image}`]"
                 :alt="product.name"
                 class="img-list"
               />
@@ -61,6 +61,7 @@ import PaginationComponent from "../../../layouts/PaginationComponent";
 import SearchComponent from "../../layouts/SearchComponent";
 import ProductForm from "./partials/ProductFom";
 import ButtonDestroyComponent from "../../layouts/ButtonDestroyComponent";
+import { URL_BASE_IMAGE } from '../../../../config/config'
 
 export default {
   created() {
@@ -77,6 +78,7 @@ export default {
         category_id: "",
       },
       update: false,
+      url_img: URL_BASE_IMAGE
     };
   },
   computed: {
