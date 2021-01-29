@@ -27,7 +27,7 @@
         <tr>
           <th width="150">Imagem</th>
           <th>Nome</th>
-          <th width="200">Ações</th>
+          <th width="220">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -60,8 +60,7 @@ import Vodal from "vodal";
 import PaginationComponent from "../../../layouts/PaginationComponent";
 import SearchComponent from "../../layouts/SearchComponent";
 import ProductForm from "./partials/ProductFom";
-/*
-import ButtonDestroyComponent from "../../layouts/ButtonDestroyComponent";*/
+import ButtonDestroyComponent from "../../layouts/ButtonDestroyComponent";
 
 export default {
   created() {
@@ -161,8 +160,8 @@ export default {
     paginate: PaginationComponent,
     search: SearchComponent,
     Vodal,
-    ProductForm,/*
-    destroy: ButtonDestroyComponent,*/
+    ProductForm,
+    destroy: ButtonDestroyComponent,
   },
 };
 </script>
