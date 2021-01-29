@@ -10,6 +10,12 @@
                 class="img-list"
               />
             </div>
+            <div v-else>
+                <img 
+                :src="[`${url_img}img/noimage.jpg`]" 
+                :alt="product.name"
+                class="img-list">
+            </div>
                 {{ product.name }}
             </div>
         </div>
@@ -26,10 +32,10 @@ export default {
         }
     },
     created() {
-        //this.$store.dispatch('loadProducts', {})
-        if(this.products.data.length == 0){
+        this.$store.dispatch('loadProducts', {})
+        /*if(this.products.data.length == 0){
             this.$store.dispatch('loadProducts', {})
-        }
+        }*/
     },
     computed:{
         products(){
