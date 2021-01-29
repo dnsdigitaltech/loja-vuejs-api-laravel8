@@ -67,6 +67,7 @@ export default {
             let action = this.update ? 'updateProduct' : 'storeProduct'
 
             const formData = new FormData()
+            //veirifando se a imagem existe
             if (this.upload != null)
                 formData.append('image', this.upload)
 
@@ -96,7 +97,7 @@ export default {
             this.imagePreview = null
             this.upload = null
         },
-
+        //upload de imagem
         onFileChange (e) {
             let files = e.target.files || e.dataTransfer.files
             if (!files.length)
@@ -106,7 +107,7 @@ export default {
 
             this.previewImage(files[0])
         },
-
+        //exibir a imagem e miniatura ao escolher
         previewImage (file) {
             let reader = new FileReader()
             reader.onload = (e) => {

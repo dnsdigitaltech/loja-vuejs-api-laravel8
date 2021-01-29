@@ -2,7 +2,7 @@ import axios from "axios";
 import { URL_BASE } from '../../../config/config'
 
 const RESOURCE = 'products'
-
+//configuração do envio da imagem
 const CONFIGS = {
     headers: {
         'content-type': 'multipart/forma-data',

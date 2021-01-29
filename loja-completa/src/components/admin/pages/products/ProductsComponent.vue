@@ -35,7 +35,7 @@
           <td>
             <div v-if="product.image">
               <img
-                :src="[`/storage/products/${product.image}`]"
+                :src="[`http://localhost:8000/storage/products/${product.image}`]"
                 :alt="product.name"
                 class="img-list"
               />
