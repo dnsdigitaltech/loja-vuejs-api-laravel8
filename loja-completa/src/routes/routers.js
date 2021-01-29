@@ -8,9 +8,21 @@ import EditCategoryComponent from '../components/admin/pages/categories/EditCate
 import DashboardComponent from '../components/admin/pages/dashboard/DashboardComponent'
 //products
 import ProductsComponent from '../components/admin/pages/products/ProductsComponent'
+//frontEnd
+import SiteComponent from '../components/frontend/SiteComponent'
+import HomeComponent from '../components/frontend/pages/home/HomeComponent'
+import ContactComponent from '../components/frontend/pages/contact/ContactComponent'
 
 Vue.use(VueRouter)
 const routes = [
+    {
+        path: '/',
+        component: SiteComponent,
+        children: [
+            {path: '',component: HomeComponent, name: 'home'},
+            {path: 'contato',component: ContactComponent, name: 'contact'}
+        ]
+    },
     {
         path: '/admin', 
         component: AdminComponent,
