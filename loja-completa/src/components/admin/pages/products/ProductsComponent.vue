@@ -2,8 +2,8 @@
   <div>
     <h1>Listagem de Produtos</h1>
 
-    <!--<div class="row">
-      <div class="col">
+    <div class="row">
+      <!--<div class="col">
         <button class="btn btn-success" @click.prevent="create">Novo</button>
 
         <vodal
@@ -16,12 +16,12 @@
           <product-form :product="product" :update="update" @success="success">
           </product-form>
         </vodal>
-      </div>
+      </div>-->
       <div class="col">
         <search @search="searchForm"> </search>
       </div>
     </div>
--->
+
     <table class="table table-dark">
       <thead>
         <tr>
@@ -58,7 +58,8 @@
 //import Vodal from "vodal";
 
 import PaginationComponent from "../../../layouts/PaginationComponent";
-/*import SearchComponent from "../../layouts/SearchComponent";
+import SearchComponent from "../../layouts/SearchComponent";
+/*
 import ProductForm from "./partials/ProductForm";
 import ButtonDestroyComponent from "../../layouts/ButtonDestroyComponent";*/
 
@@ -158,7 +159,7 @@ export default {
   },
   components: {
     paginate: PaginationComponent,
-    /*search: SearchComponent,
+    search: SearchComponent,/*
     Vodal,
     ProductForm,
     destroy: ButtonDestroyComponent,*/
