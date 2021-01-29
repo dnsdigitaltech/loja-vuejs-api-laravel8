@@ -125,4 +125,10 @@ export default {
 
 <style scoped>
 .image-preview{max-width: 60px;}
+.has-error {
+  color: rgb(221, 54, 3);
+}
+.has-error input {
+  border: 1px solid rgb(221, 54, 3);
+}
 </style>

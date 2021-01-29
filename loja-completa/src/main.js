@@ -33,3 +33,6 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+//carregar categorias automaticamente
+store.dispatch('loadCategories')
