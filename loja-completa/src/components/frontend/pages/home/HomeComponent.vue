@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>{{title}}</h1>
+        <search @search="search"></search>
         <div class="row">
             <item 
             v-for="product in products.data" 
@@ -16,15 +17,17 @@
 <script>
 import PaginationComponent from '../../../layouts/PaginationComponent'
 import Item from '../../../layouts/Item'
+import SearchComponent from '../../../admin/layouts/SearchComponent'
 export default {
-    data() {
-        return {
-            title: 'Produtos',
-        }
-    },
     created() {
         if(this.products.data.length == 0){
             this.$store.dispatch('loadProducts', {})
+        }
+    },
+    data() {
+        return {
+            title: 'Produtos',
+            filter: ''
         }
     },
     computed: {
@@ -32,20 +35,26 @@ export default {
             return this.$store.state.products.items;
         },
         params() {
-        return {
-            page: this.products.current_page,
-            filter: this.search,
-        };
+            return {
+                filter: this.filter,
+                page: this.products.current_page,
+            };
         },
     },
     methods: {
-        loadProducts(page) {
-        this.$store.dispatch("loadProducts", { ...this.params, page });
+        loadProducts(page = 1) {
+            this.$store.dispatch("loadProducts", { ...this.params, page });
         },
+        search (filter) {
+            this.filter = filter
+
+            this.loadProducts()
+        }
     },
     components: {
         paginate: PaginationComponent,
-        Item
+        Item,
+        search: SearchComponent
     }
 }
 </script>
