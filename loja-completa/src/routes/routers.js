@@ -12,6 +12,7 @@ import ProductsComponent from '../components/admin/pages/products/ProductsCompon
 import SiteComponent from '../components/frontend/SiteComponent'
 import HomeComponent from '../components/frontend/pages/home/HomeComponent'
 import ContactComponent from '../components/frontend/pages/contact/ContactComponent'
+import ProductDetail from '../components/frontend/pages/product/ProductDetail'
 
 Vue.use(VueRouter)
 const routes = [
@@ -20,6 +21,7 @@ const routes = [
         component: SiteComponent,
         children: [
             {path: '',component: HomeComponent, name: 'home'},
+            {path: 'produto/:id', component: ProductDetail, name: 'product.detail'},
             {path: 'contato',component: ContactComponent, name: 'contact'},
         ]
     },
