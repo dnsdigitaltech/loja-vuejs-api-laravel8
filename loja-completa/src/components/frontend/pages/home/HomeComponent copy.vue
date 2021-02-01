@@ -2,7 +2,7 @@
     <div>
         <h1>{{title}}</h1>
         <div class="row">
-            <div class="col-3" v-for="product in products.data" :key="product.id">
+            <div class="col-3" v-for="product in products" :key="product.id">
                 <div v-if="product.image">
                 <img
                     :src="[`${url_img}products/${product.image}`]"
@@ -17,9 +17,10 @@
                     class="img-list">
                 </div>
                 {{ product.name }}
-            </div>            
+            </div>
+         
+            <paginate :pagination="products" :offset="6" @paginate="loadProducts"> </paginate>
         </div>
-        <paginate :pagination="products" :offset="6" @paginate="loadProducts"> </paginate>
     </div>
 </template>
 
@@ -30,35 +31,29 @@ export default {
     data() {
         return {
             title: 'Produtos',
-            url_img: URL_BASE_IMAGE,
-            product: {
-                id: "",
-                name: "",
-                description: "",
-                category_id: "",
-            },
+            url_img: URL_BASE_IMAGE
         }
     },
     created() {
-        if(this.products.data.length == 0){
-            this.$store.dispatch('loadProducts', {})
-        }
+        this.$store.dispatch('loadProducts', {})
+        /*if (this.products.data.length == 0) 
+            this.$store.dispatch('loadProducts', {})*/
     },
-    computed: {
-        products() {
-            return this.$store.state.products.items;
+    computed:{
+        products(){
+            return this.$store.state.products.items.data
         },
-        params() {
-        return {
-            page: this.products.current_page,
-            filter: this.search,
-        };
-        },
+        
+      params () {
+          return {
+              page: this.products.current_page,
+          }
+      }
     },
     methods: {
         loadProducts(page) {
-        this.$store.dispatch("loadProducts", { ...this.params, page });
-        },
+            this.$store.dispatch("loadProducts", { ...this.params, page });
+        }
     },
     components: {
         paginate: PaginationComponent

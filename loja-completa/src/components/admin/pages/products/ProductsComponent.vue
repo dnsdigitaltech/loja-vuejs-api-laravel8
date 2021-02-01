@@ -65,6 +65,7 @@ import { URL_BASE_IMAGE } from '../../../../config/config'
 
 export default {
   created() {
+    console.log(this.products)
     this.loadProducts(1);
   },
   data() {

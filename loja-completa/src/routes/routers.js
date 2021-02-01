@@ -20,7 +20,7 @@ const routes = [
         component: SiteComponent,
         children: [
             {path: '',component: HomeComponent, name: 'home'},
-            {path: 'contato',component: ContactComponent, name: 'contact'}
+            {path: 'contato',component: ContactComponent, name: 'contact'},
         ]
     },
     {
