@@ -5,6 +5,6 @@ import getters from './getters'
 export default {
     state,
     //actions,
-   // mutations,
+    mutations,
     //getters
 }

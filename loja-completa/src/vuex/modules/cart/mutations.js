@@ -1,5 +1,5 @@
 export default {
-    LOAD_PRODUCTS (state, products) {
-        state.items = products
+    ADD_PRODUCTS_CART (state, products) {
+        state.products.push(products)
     }
 }

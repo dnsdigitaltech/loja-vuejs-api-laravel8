@@ -14,13 +14,15 @@
                 :alt="item.name"
                 class="img-list">
             </div>
-            {{ item.name }}
+            <p>{{ item.name }}</p>
         </router-link>
+        <button-cart :product="item"></button-cart>
     </div>
 </template>
 
 <script>
 import { URL_BASE_IMAGE } from '../../config/config'
+import ButtonCart from './ButtonCart'
 export default {
     props: ['item', 'path'],
     data() {
@@ -28,6 +30,9 @@ export default {
             url_img: URL_BASE_IMAGE,
         }
     },
+    components: {
+        ButtonCart
+    }
 }
 </script>
 
