@@ -6,7 +6,7 @@
             </button>
         </div>
         <div v-else>
-            <button class="btn btn-danger" @click.prevent="addCart">
+            <button class="btn btn-danger" @click.prevent="removeCart">
                 Remover Carrinho
             </button>
         </div>
@@ -24,6 +24,9 @@ export default {
     methods: {
         addCart() {
             this.$store.commit('ADD_PRODUCTS_CART', this.product)
+        },
+        removeCart() {
+            this.$store.commit('REMOVE_PRODUCT_CART', this.product)
         } 
     },
 }
