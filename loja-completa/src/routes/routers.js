@@ -54,10 +54,13 @@ const router =  new VueRouter({
 router.beforeEach((to, from, next) => {
     //Verifica de o user está logado e atenticado
     if(to.meta.auth && !store.state.auth.authenticated) {
+        //armazenar a url para não voltar pto login
+        store.commit('CHANGE_URL_BACK', to.name)
         return router.push({name: 'login'})
     }
     //verificar se a rota pai esta autenticada 
     if(to.matched.some(record => record.meta.auth) && !store.state.auth.authenticated){
+        store.commit('CHANGE_URL_BACK', to.name)
         return router.push({name: 'login'})
     }
     next()

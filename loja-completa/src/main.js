@@ -41,7 +41,7 @@ store.dispatch('loadCategories')
 
 //Verifica se existe token
 store.dispatch('checkLogin')
-      .then(() => router.push({name: 'admin.dashboard'}))//rota global logado
+      .then(() => router.push({name: store.state.auth.urlBack}))//rota global logado
 
 //const token = localStorage.getItem('NAME_TOKEN')
 

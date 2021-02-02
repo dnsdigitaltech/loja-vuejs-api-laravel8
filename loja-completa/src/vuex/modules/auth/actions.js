@@ -16,6 +16,7 @@ export default {
     },
 
     checkLogin(context) {
+        context.commit('PRELOADER', true)
         //iniciada assim que a app é startada
         return new Promise((resolve, reject) => {
             const token = localStorage.getItem('NAME_TOKEN')
@@ -30,6 +31,7 @@ export default {
                         resolve()
                     })
                     .catch(() => reject(error))
+                    .finally(() => context.commit('PRELOADER', false))
         })
 
     }
