@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../vuex/store'
 import AdminComponent from '../components/admin/AdminComponent'
 //categories
 import CategoriesComponent from '../components/admin/pages/categories/CategoriesComponent'
@@ -38,7 +39,7 @@ const routes = [
             {path: 'categorias/criar', component: AddCategoryComponent, name: 'admin.categories.create'},  
             {path: 'categorias/:id/editar', component: EditCategoryComponent, name: 'admin.categories.edit', props:true},       
             
-            {path: 'produtos', component: ProductsComponent, name: 'admin.products'}
+            {path: 'produtos', component: ProductsComponent, name: 'admin.products', meta: {auth:true}}
         ]
     },
     
@@ -46,6 +47,16 @@ const routes = [
 
 const router =  new VueRouter({
     routes
+})
+
+//Restringir Páginas antes de cada rota
+router.beforeEach((to, from, next) => {
+    //Verifica de o user está logado e atenticado
+    if(to.meta.auth && !store.state.auth.authenticated) {
+        return router.push({name: 'login'})
+    }
+
+    next()
 })
 
 export default router
