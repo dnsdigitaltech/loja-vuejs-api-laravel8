@@ -1,4 +1,4 @@
 export default {
     me: {},
-    autenticated: false,
+    authenticated: false,
 }

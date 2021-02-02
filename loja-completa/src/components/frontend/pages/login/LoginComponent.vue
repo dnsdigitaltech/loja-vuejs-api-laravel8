@@ -39,6 +39,8 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', this.formData)
+                    //se autenticação der certo direciona para alguma pagina restrita
+                    .then(() => this.$router.push({name: 'admin.dashboard'}))
         }
     },
 }

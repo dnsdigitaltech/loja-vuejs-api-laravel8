@@ -1,5 +1,6 @@
 export default {
-    LOAD_PRODUCTS (state, products) {
-        state.items = products
-    }
+    AUTH_USER_OK (state, user) {
+        state.authenticated = true,
+        state.me = user
+    },
 }
