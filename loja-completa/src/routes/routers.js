@@ -33,6 +33,7 @@ const routes = [
     {
         path: '/admin', 
         component: AdminComponent,
+        meta: {auth: true},//autenticação em um grupo de rota
         children: [
             {path: '', component: DashboardComponent, name: 'admin.dashboard'},
             {path: 'categorias', component: CategoriesComponent, name: 'admin.categories'},
@@ -55,7 +56,10 @@ router.beforeEach((to, from, next) => {
     if(to.meta.auth && !store.state.auth.authenticated) {
         return router.push({name: 'login'})
     }
-
+    //verificar se a rota pai esta autenticada 
+    if(to.matched.some(record => record.meta.auth) && !store.state.auth.authenticated){
+        return router.push({name: 'login'})
+    }
     next()
 })
 
