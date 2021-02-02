@@ -23,11 +23,11 @@ const routes = [
         path: '/',
         component: SiteComponent,
         children: [
-            {path: '',component: HomeComponent, name: 'home'},
+            {path: '',component: HomeComponent, name: 'home', meta: {auth: false}},
             {path: 'produto/:id', component: ProductDetail, name: 'product.detail', props: true},
             {path: 'contato',component: ContactComponent, name: 'contact'},
             {path: 'carrinho',component: CartComponent, name: 'cart'},
-            {path: 'login',component: LoginComponent, name: 'login'},
+            {path: 'login',component: LoginComponent, name: 'login', meta: {auth: false}},
         ]
     },
     {
@@ -62,6 +62,10 @@ router.beforeEach((to, from, next) => {
     if(to.matched.some(record => record.meta.auth) && !store.state.auth.authenticated){
         store.commit('CHANGE_URL_BACK', to.name)
         return router.push({name: 'login'})
+    }
+    //Verifica se está logado e exibe as informações
+    if(to.meta.hasOwnProperty('auth') && !to.meta.auth && store.state.auth.authenticated){
+        return router.push({name: 'admin.dashboard'})
     }
     next()
 })
