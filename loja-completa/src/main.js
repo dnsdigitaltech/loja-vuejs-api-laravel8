@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routes/routers'
 import store from './vuex/store'
+import { NAME_TOKEN } from './config/config'
+import axios from "axios";
 import Snotify, { SnotifyPosition } from 'vue-snotify'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -36,3 +38,12 @@ new Vue({
 
 //carregar categorias automaticamente
 store.dispatch('loadCategories')
+
+//Verifica se existe token
+store.dispatch('checkLogin')
+      .then(() => router.push({name: 'admin.dashboard'}))//rota global logado
+
+//const token = localStorage.getItem('NAME_TOKEN')
+
+  
+ 
