@@ -8,22 +8,7 @@
                     </div>
                     <div class="card-body">
                         <form class="form" @submit.prevent="register">
-                            <div :class="['form-group', {'has-error': errors.name}]">
-                                <div v-if="errors.name">{{errors.name[0]}}</div>
-                                <input type="text" class="form-control" placeholder="Nome" v-model="formData.name">
-                            </div>
-                            <div :class="['form-group', {'has-error': errors.name}]">
-                                <div v-if="errors.email">{{errors.email[0]}}</div>
-                                <input type="email" class="form-control" placeholder="E-mail" v-model="formData.email">
-                            </div>
-                            <div :class="['form-group', {'has-error': errors.password}]">
-                                <div v-if="errors.password">{{errors.password[0]}}</div>
-                                <input type="password" class="form-control" placeholder="Senha" v-model="formData.password">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success">Cadatrar-ser</button>
-                                <router-link :to="{name:'login'}">Ja sou cadastrado? Login!</router-link>
-                            </div>
+                            <user-form :user="formData" :errors="errors"></user-form>
                         </form>   
                     </div>
                 </div><!--card-->
@@ -33,6 +18,7 @@
 </template>
 
 <script>
+import UserForm from './UserForm'
 export default {
     data() {
         return {
@@ -58,14 +44,8 @@ export default {
                     })
         }
     },
+    components: {
+        UserForm
+    }
 }
 </script>
-
-<style scoped>
-    .has-error {
-        color: rgb(221, 54, 3);
-    }
-    .has-error input {
-        border: 1px solid rgb(221, 54, 3);
-    }
-</style>
