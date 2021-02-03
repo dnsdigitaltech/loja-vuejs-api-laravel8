@@ -9,14 +9,17 @@
                     <div class="card-body">
                         <form class="form" @submit.prevent="login">
                             <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nome" v-model="formData.name">
+                            </div>
+                            <div class="form-group">
                                 <input type="email" class="form-control" placeholder="E-mail" v-model="formData.email">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Senha" v-model="formData.password">
                             </div>
                             <div class="form-group">
-                                <button type="submit"  class="btn btn-success">Acessar</button>
-                                <router-link :to="{name:'register'}">Não tem cadastro? Registre-se!</router-link>
+                                <button type="submit" class="btn btn-success">Cadatrar-ser</button>
+                                <router-link :to="{name:'login'}">Ja sou cadastrado? Login!</router-link>
                             </div>
                         </form>   
                     </div>
@@ -30,22 +33,17 @@
 export default {
     data() {
         return {
-            title: 'Login',
+            title: 'Registrar',
             formData: {
+                name: '',
                 email: '',
                 password: ''
             }
         }
     },
-    methods: {
-        login() {
-            this.$store.dispatch('login', this.formData)
-                    //se autenticação der certo direciona para alguma pagina restrita
-                    .then(() => this.$router.push({name: 'admin.dashboard'}))
-                    .catch(() => {
-                        this.$snotify.error('Dados inválidos',  'Falha ao acessar')
-                    })
-        }
-    },
 }
 </script>
+
+<style scoped>
+
+</style>
