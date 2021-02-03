@@ -10,7 +10,9 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vodal": "^2.4.0"
+    "chart.js": "^2.9.4",
+    "vodal": "^2.4.0",
+    "vue-chartjs": "^3.5.1"
   },
   "browserslist": [
     "> 1%",
