@@ -14,6 +14,17 @@ export default {
                         .catch(error => reject(error.response.data))
                         .finally(context.commit('PRELOADER', false))
             })
+        },
+        update (context, params) {
+            context.commit('PRELOADER', true)
+            return new Promise((resolve, reject) => {
+                axiosInstance.put(`${URL_AUTH}update`, params)
+                        .then(response => {
+                            resolve()
+                        })
+                        .catch(error => reject(error.response.data))
+                        .finally(context.commit('PRELOADER', false))
+            })
         }
      }
 }

@@ -50,11 +50,11 @@ export default {
             this.$store.dispatch('update', this.formData)
                     .then(() => {
                         this.$router.push({name: 'admin.dashboard'})
-                        this.$snotify.success('Sucesso ao Cadastrar!')
+                        this.$snotify.success('Atualizado com sucesso!')
                     })
                     .catch(response => {
                         this.errors = response.errors
-                        this.$snotify.error('Error ao Cadastrar!')
+                        this.$snotify.error('Error ao atualizar!')
                     })
         }
     },
