@@ -11,7 +11,7 @@ export default {
                             localStorage.setItem('NAME_TOKEN', response.data.token)
                             resolve()
                         })
-                        .catch(error => console.log(error.response))
+                        .catch(error => reject(error.response.data))
                         .finally(context.commit('PRELOADER', false))
             })
         }
