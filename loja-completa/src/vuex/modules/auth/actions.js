@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_AUTH, TOKEN, axiosInstance } from '../../../config/config'
+import { URL_AUTH, NAME_TOKEN, axiosInstance } from '../../../config/config'
 
 export default {
     login(context, params) {
@@ -34,5 +34,10 @@ export default {
                     .finally(() => context.commit('PRELOADER', false))
         })
 
+    },
+    logout(context) {
+        localStorage.removeItem('NAME_TOKEN')
+
+        context.commit('AUTH_USER_LOGOUT')
     }
 }

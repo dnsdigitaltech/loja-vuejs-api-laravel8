@@ -11,8 +11,8 @@
                <router-link :to="{name: 'cart'}" class="nav-link">CARRINHO ({{ cart.length }})</router-link>
            </li>
            <li class="nav-item" v-if="me.name">
-               <router-link :to="{name: 'admin.dasboard'}" class="nav-link">
-                   Olá {{ me.name }}
+               <router-link :to="{name: 'admin.dashboard'}" class="nav-link">
+                   Olá {{ me.name }}  (<a @click.prevent="logout" href="">Sair</a>)
                </router-link>
            </li>
            <li class="nav-item" v-else>
@@ -31,7 +31,12 @@ export default {
         me() {
             return this.$store.state.auth.me
         }
-    }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logout')
+        }
+    },
 }
 </script>
 
