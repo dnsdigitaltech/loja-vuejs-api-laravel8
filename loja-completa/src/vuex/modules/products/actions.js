@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_BASE } from '../../../config/config'
+import { URL_BASE, axiosInstance} from '../../../config/config'
 
 const RESOURCE = 'products'
 //configuração do envio da imagem
@@ -34,7 +34,7 @@ export default {
         context.commit('PRELOADER', true)
 
         return new Promise((resolve, reject) => {
-            axios.post(`${URL_BASE}${RESOURCE}`, formData, CONFIGS)
+            axiosInstance.post(`${URL_BASE}${RESOURCE}`, formData, CONFIGS)
                     .then(response => resolve())
                     .catch(error => {
                         context.commit('PRELOADER', false)
@@ -52,7 +52,7 @@ export default {
         formData.append('_method', 'PUT')
         
         return new Promise((resolve, reject) => {
-            axios.post(`${URL_BASE}${RESOURCE}/${formData.get('id')}`, formData)
+            axiosInstance.post(`${URL_BASE}${RESOURCE}/${formData.get('id')}`, formData)
                     .then(response => resolve())
                     .catch(error => {
                         context.commit('PRELOADER', false)
@@ -68,7 +68,7 @@ export default {
         context.commit('PRELOADER', true)
 
         return new Promise((resolve, reject) => {
-            axios.delete(`${URL_BASE}${RESOURCE}/${id}`)
+            axiosInstance.delete(`${URL_BASE}${RESOURCE}/${id}`)
                     .then(response => resolve())
                     .catch(error => {
                         reject()

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_BASE } from '../../../config/config'
+import { URL_BASE, axiosInstance } from '../../../config/config'
 const RESOURCE = 'categories/'
 export default {
     state:{
@@ -28,7 +28,7 @@ export default {
         loadCategory (context, id) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.get(`${URL_BASE}${RESOURCE}${id}`)
+            axiosInstance.get(`${URL_BASE}${RESOURCE}${id}`)
             .then(response => resolve(response.data))
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -37,7 +37,7 @@ export default {
         storeCategory (context, params){
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.post(`${URL_BASE}${RESOURCE}`, params)
+            axiosInstance.post(`${URL_BASE}${RESOURCE}`, params)
             .then(response => resolve())
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -47,7 +47,7 @@ export default {
         updateCategory (context, params) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.put(`${URL_BASE}${RESOURCE}${params.id}`, params)
+            axiosInstance.put(`${URL_BASE}${RESOURCE}${params.id}`, params)
             .then(response => resolve())
             .catch(error => reject(error))
             .finally(() => context.commit('PRELOADER', false))
@@ -56,7 +56,7 @@ export default {
         destroyCategory (context, id) {
           context.commit('PRELOADER', true)
           return new Promise((resolve, reject) => {
-            axios.delete(`${URL_BASE}${RESOURCE}${id}`)
+            axiosInstance.delete(`${URL_BASE}${RESOURCE}${id}`)
             .then(response => resolve())
             .catch(error => reject(error))
             })

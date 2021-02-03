@@ -16,6 +16,14 @@
           >Produtos</router-link
         >
       </li>
+      <li class="nav-item" v-if="me.name">
+        <router-link :to="{name: 'admin.dashboard'}" class="nav-link">
+            Olá {{ me.name }}  (<a @click.prevent="logout" href="">Sair</a>)
+        </router-link>
+      </li>
+      <li class="nav-item" v-else>
+        <router-link :to="{name: 'login'}" class="nav-link">LOGIN</router-link>
+      </li>
     </ul>
     <div class="container">
       <router-view></router-view>
@@ -32,6 +40,15 @@ export default {
     totalCategories() {
       return this.$store.state.categories.items.data.length;
     },
+    me() {
+      return this.$store.state.auth.me
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+      this.$router.push({name: 'login'})
+    }
   },
 };
 </script>

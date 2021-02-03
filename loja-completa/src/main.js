@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
 import router from './routes/routers'
 import store from './vuex/store'
 import { NAME_TOKEN } from './config/config'
@@ -28,6 +29,11 @@ const options = {
 }
 
 Vue.use(Snotify, options)
+
+/*const router = new VueRouter({
+  mode: 'history',
+  routes
+})*/
 
 new Vue({
   el: '#app',
