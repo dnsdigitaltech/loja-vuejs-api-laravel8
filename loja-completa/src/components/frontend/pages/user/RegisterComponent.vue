@@ -7,7 +7,7 @@
                         {{ title }}
                     </div>
                     <div class="card-body">
-                        <form class="form" @submit.prevent="login">
+                        <form class="form" @submit.prevent="register">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Nome" v-model="formData.name">
                             </div>
@@ -39,6 +39,12 @@ export default {
                 email: '',
                 password: ''
             }
+        }
+    },
+    methods: {
+        register() {
+            this.$store.dispatch('register', this.formData)
+                    .then(() => this.$router.push({name: 'admin.dashboard'}))
         }
     },
 }

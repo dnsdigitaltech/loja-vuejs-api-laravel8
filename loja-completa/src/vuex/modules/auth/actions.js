@@ -27,6 +27,7 @@ export default {
             axiosInstance.get(`me`)
                     .then(response => {
                         context.commit('AUTH_USER_OK', response.data.user)
+                        localStorage.setItem('NAME_TOKEN', response.data.token)
                         resolve()
                     })
                     .catch(() => reject(error))
