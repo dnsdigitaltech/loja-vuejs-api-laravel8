@@ -17,6 +17,7 @@ import ProductDetail from '../components/frontend/pages/product/ProductDetail'
 import CartComponent from '../components/frontend/pages/cart/CartComponent'
 import LoginComponent from '../components/frontend/pages/login/LoginComponent'
 import RegisterComponent from '../components/frontend/pages/user/RegisterComponent'
+import ProfileComponent from '../components/frontend/pages/user/ProfileComponent'
 
 Vue.use(VueRouter)
 const routes = [
@@ -30,6 +31,7 @@ const routes = [
             {path: 'carrinho',component: CartComponent, name: 'cart'},
             {path: 'login',component: LoginComponent, name: 'login', meta: {auth: false}},
             {path: 'cadastrar',component: RegisterComponent, name: 'register', meta: {auth: false}},
+            {path: 'atualizar',component: ProfileComponent, name: 'profile', meta: {auth: true}},
         ]
     },
     {
