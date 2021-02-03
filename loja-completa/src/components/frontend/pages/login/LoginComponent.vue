@@ -41,6 +41,9 @@ export default {
             this.$store.dispatch('login', this.formData)
                     //se autenticação der certo direciona para alguma pagina restrita
                     .then(() => this.$router.push({name: 'admin.dashboard'}))
+                    .catch(() => {
+                        this.$snotify.error('Dados inválidos',  'Falha ao acessar')
+                    })
         }
     },
 }

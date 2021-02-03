@@ -11,7 +11,6 @@ export default {
                         //armazenar o token para persistir na aplicação
                         localStorage.setItem('NAME_TOKEN', response.data.token)
                     })
-                    .catch(error => console.log(error))
                     .finally(() => context.commit('PRELOADER', false))
     },
 
